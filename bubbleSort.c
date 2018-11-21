@@ -5,7 +5,7 @@
 double tempo = 0;
 long int instrucoes = 0;
 
-double bubbleSort(int *v, long int qtde) {
+bubbleSort(int *v, long int qtde) {
     int aux = 0;
     clock_t inicio = clock();
 
@@ -21,7 +21,6 @@ double bubbleSort(int *v, long int qtde) {
     }
     clock_t fim = clock();
     tempo = (((double) fim - inicio) / CLOCKS_PER_SEC);
-    return tempo; 
 }
 
 int openFile(int *v) {
@@ -41,15 +40,12 @@ int openFile(int *v) {
 
 int main() {
     int *v;
-    long int qtde = 1000;
-    double t;
+    long int qtde = 100000;
 
     v = (int*) malloc (sizeof(int) * qtde);
 
     openFile(v);
     
     bubbleSort(v, qtde);
-    printf("bubbleSort - Tempo: %lf\n Número de instruções: %li", tempo, instrucoes);
-    for(int i = 0; i < 1000; i++)
-        printf("%d ", v[i]);
+    printf("bubbleSort - Tempo: %lf\nNúmero de instruções: %lu", tempo, instrucoes);
 }

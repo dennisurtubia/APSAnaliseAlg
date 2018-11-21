@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
+double tempo = 0;
+long int instrucoes = 0;
+
 double selectionSort(int* v, int tam){
-    int aux = 0;
-    long int instrucoes = 0;
-    double tempo;
     clock_t inicio = clock();
     for(int i=tam; i > 0; i--){
         int m = i;
         for(int j=0; j<i; j++){
+            instrucoes += 1;
             if(v[j] > v[m])
                 m = j;
         }
-        instrucoes += 1;
         int temp = v[i];
         v[i] = v[m];
         v[m] = temp;
@@ -40,12 +40,12 @@ void openFile(int *v) {
 
 void main(){
     int *v;
-    long int qtde = 1000;
-    double tempo;
+    int qtde = 100000;
 
     v = (int*) malloc (sizeof(int) * qtde);
 
     openFile(v);
     
-    tempo = selectionSort(v, qtde);
+    selectionSort(v, qtde);
+    printf("selectionSort - Tempo: %lf\nNúmero de Instruções: %d", tempo, instrucoes);
 }

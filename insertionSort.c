@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <time.h>
 
+double tempo = 0;
+long int instrucoes = 0;
+
 double insertionSort(int* v, int tam){
     int aux = 0;
-    long int instrucoes = 0;
-    double tempo;
     clock_t inicio = clock();
     for(int i=1; i<tam; i++){
         int elem = v[i];
@@ -40,13 +41,12 @@ void openFile(int *v) {
 
 void main(){
     int *v;
-    long int qtde = 1000;
-    double tempo;
+    int qtde = 100000;
 
     v = (int*) malloc (sizeof(int) * qtde);
 
     openFile(v);
     
     tempo = insertionSort(v, qtde);
-    printf("insertionSort - Tempo: %lf\n", tempo);
+    printf("insertionSort - Tempo: %lf\nNúmero de Instruções: %lu\n", tempo, instrucoes);
 }
