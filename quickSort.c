@@ -11,15 +11,15 @@ int particiona(int* v, int inicio, int fim){
     dir = fim;
     pivo = v[inicio];
     while(esq < dir){
-            while(v[esq] <= pivo)
-                esq++;
-            while(v[dir] > pivo)
-                dir--;
-            if(esq < dir){
-                aux = v[esq];
-                v[esq] = v[dir];
-                v[dir] = aux;
-            }
+        while(v[esq] <= pivo)
+            esq++;
+        while(v[dir] > pivo)
+            dir--;
+        if(esq < dir){
+            aux = v[esq];
+            v[esq] = v[dir];
+            v[dir] = aux;
+        }
     }
     v[inicio] = v[dir];
     v[dir] = pivo;
@@ -37,7 +37,6 @@ void quickSort(int* v, int inicio, int fim){
     clock_t f = clock();
     tempo += (((double) f - i) / CLOCKS_PER_SEC);
 }
-
 
 void openFile(int *v) {
     FILE *arq;
@@ -64,5 +63,5 @@ void main(){
     openFile(v);
     
     quickSort(v, 0, qtde);
-    printf("quickSort - Tempo: %lf\nNúmero de instruções %lu\n", tempo, instrucoes);
+    printf("quickSort\nTempo: %lf\nNúmero de instruções %lu\n", tempo, instrucoes);
 }

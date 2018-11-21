@@ -5,7 +5,7 @@
 double tempo = 0;
 long int instrucoes = 0;
 
-bubbleSort(int *v, long int qtde) {
+void bubbleSort(int *v, long int qtde) {
     int aux = 0;
     clock_t inicio = clock();
 
@@ -47,5 +47,5 @@ int main() {
     openFile(v);
     
     bubbleSort(v, qtde);
-    printf("bubbleSort - Tempo: %lf\nNúmero de instruções: %lu", tempo, instrucoes);
+    printf("bubbleSort com melhorias\nTempo: %lf\nNúmero de instruções: %lu", tempo, instrucoes);
 }

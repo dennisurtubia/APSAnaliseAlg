@@ -5,47 +5,47 @@
 double tempo = 0;
 long int instrucoes = 0;
 
-bubbleSort(int *v, long int qtde) {
-    int aux = 0;
-    clock_t inicio = clock();
+void bubbleSort(int *v, long int qtde) {
+  int aux = 0;
+  clock_t inicio = clock();
 
-    for(int i = 0; i < qtde - 1; i++) {
-        for(int j = i+1; j < qtde; j++){
-            instrucoes += 1;
-            if(v[i] > v[j]){
-                aux = v[j];
-                v[j] = v[i];
-                v[i] = aux;
-            }
-        }
+  for(int i = 0; i < qtde; i++){
+    for(int j = 0; j < qtde; j++){
+      instrucoes += 1;
+      if(v[j] > v[j+1]) {
+        aux = v[j];
+        v[j] = v[j+1];
+        v[j+1] = aux;
+      }
     }
-    clock_t fim = clock();
-    tempo = (((double) fim - inicio) / CLOCKS_PER_SEC);
+	}
+  clock_t fim = clock();
+  tempo = (((double) fim - inicio) / CLOCKS_PER_SEC);
 }
 
 int openFile(int *v) {
-    FILE *arq;
-    arq = fopen("arquivo.txt", "r");
-    char str[7];
-    int i = 0;
+  FILE *arq;
+  arq = fopen("arquivo.txt", "r");
+  char str[7];
+  int i = 0;
 
+  fscanf(arq, "%s", str);
+  while(!feof(arq)){
+    v[i] = atoi(str);
     fscanf(arq, "%s", str);
-    while(!feof(arq)){
-        v[i] = atoi(str);
-        fscanf(arq, "%s", str);
-        i++;
-    }
-    fclose(arq);
+    i++;
+  }
+  fclose(arq);
 }
 
 int main() {
-    int *v;
-    long int qtde = 100000;
+  int *v;
+  long int qtde = 100000;
 
-    v = (int*) malloc (sizeof(int) * qtde);
+  v = (int*) malloc (sizeof(int) * qtde);
 
-    openFile(v);
+  openFile(v);
     
-    bubbleSort(v, qtde);
-    printf("bubbleSort - Tempo: %lf\nNúmero de instruções: %lu", tempo, instrucoes);
+  bubbleSort(v, qtde);
+  printf("bubbleSort\nTempo: %lf\nNúmero de instruções: %lu\n", tempo, instrucoes);  
 }
