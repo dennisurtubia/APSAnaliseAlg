@@ -2,21 +2,20 @@
 #include <stdlib.h>
 #include <time.h>
 
-int e = 1, d = 1;
+int e = 1, d = 1, maiorSoma = 0, soma = 0;
 
 void vetmax(int *v, int qtde){
-  int soma = 0, aux = 0;
-
+  maiorSoma = v[0];
   for(int i = 0; i < qtde; i++){
     for(int j = i; j < qtde; j++){
-      aux += v[j];
-      if(aux > soma){
-        soma = aux;
+      soma += v[j];
+      if(soma >= maiorSoma){
+        maiorSoma = soma;
         e = i;
         d = j;
       }
     }
-    aux = 0;
+    soma = 0;
   }
 }
 
@@ -38,7 +37,7 @@ int openFile(int *v) {
 int main(){
 
   int *v;
-  int qtde = 5;
+  int qtde = 9;
 
   v = (int *)malloc(sizeof(int) * qtde);
 
@@ -46,5 +45,5 @@ int main(){
 
   vetmax(v, qtde);
 
-  printf("Esquerda: %d, Direita: %d ", e, d);
+  printf("Esquerda: %d, Direita: %d, Maior Soma: %d\n ", e, d, maiorSoma);
 }
