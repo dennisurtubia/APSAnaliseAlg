@@ -23,7 +23,7 @@ void bubbleSort(int *v, long int qtde) {
   tempo = (((double) fim - inicio) / CLOCKS_PER_SEC);
 }
 
-int openFile(int *v) {
+int openFile(int *v, int q) {
   FILE *arq;
   arq = fopen("arquivo.txt", "r");
   char str[7];
@@ -36,16 +36,4 @@ int openFile(int *v) {
     i++;
   }
   fclose(arq);
-}
-
-int main() {
-  int *v;
-  long int qtde = 100000;
-
-  v = (int*) malloc (sizeof(int) * qtde);
-
-  openFile(v);
-    
-  bubbleSort(v, qtde);
-  printf("bubbleSort\nTempo: %lf\nNúmero de instruções: %lu\n", tempo, instrucoes);  
 }
